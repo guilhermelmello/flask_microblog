@@ -6,12 +6,20 @@ This implementation follows [The Flask Mega-Tutorial](https://blog.miguelgrinber
 
 # How to setup this project
 
-- Create a virtual environment:
-$ virtualenv venv
-$ source venv/bin/activate
+- First download [and unzip] this repository into your machine.
+- Enter the microblog directory.
+- Create and activate a virtual environment:
+```console
+foo@bar:~/microblob$ virtualenv venv
+foo@bar:~/microblog$ source venv/bin/activate
+```
 
 - Install requirements
-$ pip install -r requirements.txt
-
+```console
+(venv) foo@bar:~/microblob$ pip install -r requirements.txt
+```
 - Run flask application
-$ flask run
+```console
+(venv) foo@bar:~/microblob$ flask run
+```
+
