@@ -4,14 +4,18 @@ from app.models import User
 from flask import render_template
 from flask import flash
 from flask import redirect
+from flask import request
 from flask import url_for
 from flask_login import current_user
 from flask_login import login_user
+from flask_login import login_required
 from flask_login import logout_user
+from werkzeug.urls import url_parse
 
 
 @app.route('/')
 @app.route('/index')
+@login_required
 def index():
     template_params = dict(
         title='Home',
@@ -43,7 +47,10 @@ def login():
             flash('Invalid Username or Password.')
             return redirect(url_for('login'))
         login_user(user, remember_me=form.remember_me.data)
-        return redirect(url_for('index'))
+        next_page = request.args.get('next')
+        if not next_page or url_parse(next_page).netloc != '':
+            next_page = url_for('index')
+        return redirect(next_page)
 
     template_params = dict(
         title='Sing In',
