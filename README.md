@@ -10,16 +10,21 @@ This implementation follows [The Flask Mega-Tutorial](https://blog.miguelgrinber
 - Enter the microblog directory.
 - Create and activate a virtual environment:
 ```console
-foo@bar:~/microblob$ virtualenv venv
+foo@bar:~/microblog$ virtualenv venv
 foo@bar:~/microblog$ source venv/bin/activate
 ```
 
 - Install requirements
 ```console
-(venv) foo@bar:~/microblob$ pip install -r requirements.txt
+(venv) foo@bar:~/microblog$ pip install -r requirements.txt
 ```
 - Run flask application
 ```console
-(venv) foo@bar:~/microblob$ flask run
+(venv) foo@bar:~/microblog$ flask run
 ```
+
+- Start a local email server
+```console
+(venv) foo@bar:~/microblog$ python -m smtpd -n -c DebuggingServer localhost:8025
+ ```
 
