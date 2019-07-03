@@ -34,16 +34,7 @@ def index():
     template_params = dict(
         title='Home Page',
         form=form,
-        posts=[
-            {
-                'author': {'username': 'John'},
-                'body': 'Beautiful day in Portland.'
-            },
-            {
-                'author': {'username': 'Susan'},
-                'body': 'The Avengers movie was so cool!'
-            }
-        ]
+        posts=current_user.followed_posts().all()
     )
     return render_template('index.html', **template_params)
 
