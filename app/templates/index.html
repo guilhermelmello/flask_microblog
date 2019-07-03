@@ -4,6 +4,20 @@
     
     <h1>Hello, {{ current_user.username }}!</h1>
 
+    <form action="" method="post">
+        {{ form.hidden_tag() }}
+        <p>
+            {{ form.post.label }}<br>
+            {{ form.post(cols=32, rows=4) }}<br>
+            {% for error in form.posts.errors %}
+                <span style="color: red">[{{ error }}]</span>
+            {% endfor %}
+        </p>
+        <p>
+            {{ form.submit() }}
+        </p>
+    </form>
+
     {% for post in posts %}
         <div>
             <p>

@@ -2,7 +2,9 @@ from app import app
 from app import db
 from app.forms import EditProfileForm
 from app.forms import LoginForm
+from app.forms import PostForm
 from app.forms import RegistrationForm
+from app.models import Post
 from app.models import User
 from datetime import datetime
 from flask import render_template
@@ -17,12 +19,21 @@ from flask_login import logout_user
 from werkzeug.urls import url_parse
 
 
-@app.route('/')
-@app.route('/index')
+@app.route('/', methods=['GET', 'POST'])
+@app.route('/index', methods=['GET', 'POST'])
 @login_required
 def index():
+    form = PostForm()
+    if form.validate_on_submit():
+        post = Post(body=form.post.data, author=current_user)
+        db.session.add(post)
+        db.session.commit()
+        flash('Your post is now live!')
+        return redirect(url_for('index'))
+
     template_params = dict(
         title='Home Page',
+        form=form,
         posts=[
             {
                 'author': {'username': 'John'},
