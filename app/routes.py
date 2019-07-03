@@ -23,7 +23,9 @@ from werkzeug.urls import url_parse
 @app.route('/index', methods=['GET', 'POST'])
 @login_required
 def index():
+    title = 'Home Page'
     form = PostForm()
+
     if form.validate_on_submit():
         post = Post(body=form.post.data, author=current_user)
         db.session.add(post)
@@ -31,12 +33,27 @@ def index():
         flash('Your post is now live!')
         return redirect(url_for('index'))
 
-    template_params = dict(
-        title='Home Page',
-        form=form,
-        posts=current_user.followed_posts().all()
+    page = request.args.get('page', 1, type=int)
+    posts = current_user.followed_posts().paginate(
+        page,
+        app.config['POSTS_PER_PAGE'],
+        False
     )
-    return render_template('index.html', **template_params)
+    next_url = url_for('index', page=posts.next_num) \
+        if posts.has_next else None
+    prev_url = url_for('index', page=posts.prev_num) \
+        if posts.has_prev else None
+
+    render = render_template(
+        'index.html',
+        title=title,
+        form=form,
+        posts=posts.items,
+        next_url=next_url,
+        prev_url=prev_url
+    )
+
+    return render
 
 
 @app.route('/login', methods=['GET', 'POST'])
@@ -176,8 +193,20 @@ def unfollow(username):
 @app.route('/explore')
 @login_required
 def explore():
-    template_params = dict(
+    page = request.args.get('page', 1, type=int)
+    posts = Post.query.order_by(Post.timestamp.desc()).paginate(
+        page, app.config['POSTS_PER_PAGE'], False)
+    next_url = url_for('index', page=posts.next_num) \
+        if posts.has_next else None
+    prev_url = url_for('index', page=posts.prev_num) \
+        if posts.has_prev else None
+
+    render = render_template(
+        'index.html',
         title='Explore',
-        posts=Post.query.order_by(Post.timestamp.desc()).all(),
+        posts=posts.items,
+        next_url=next_url,
+        prev_url=prev_url
     )
-    return render_template('index.html', **template_params)
+
+    return render
