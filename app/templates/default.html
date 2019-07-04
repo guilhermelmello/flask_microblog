@@ -1,6 +1,12 @@
 {% extends 'bootstrap/base.html' %}
 
 
+{% block scripts %}
+    {{ super() }}
+    {{ moment.include_moment() }}
+{% endblock %}
+
+
 {% block title %}
     {% if title %}
         Microblog - {{ title }}
