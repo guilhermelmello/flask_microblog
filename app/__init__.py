@@ -1,5 +1,8 @@
 from config import Config
 from flask import Flask
+from flask import request
+from flask_babel import Babel
+from flask_babel import lazy_gettext as _l
 from flask_bootstrap import Bootstrap
 from flask_login import LoginManager
 from flask_mail import Mail
@@ -21,10 +24,12 @@ migrate = Migrate(app, db)
 
 login = LoginManager(app)
 login.login_view = 'login'
+login.login_message = _l('Please log in to access this page.')
 
 mail = Mail(app)
 bootstrap = Bootstrap(app)
 moment = Moment(app)
+babel = Babel(app)
 
 if not app.debug:
     # sends error by email
@@ -66,6 +71,12 @@ if not app.debug:
     app.logger.addHandler(file_handler)
     app.logger.setLevel(logging.INFO)
     app.logger.info(f"{app.config['NAME']} startup")
+
+
+@babel.localeselector
+def get_locale():
+    r = request.accept_languages.best_match(app.config['LANGUAGES'])
+    return 'es'
 
 
 from app import routes
