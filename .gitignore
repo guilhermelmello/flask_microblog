@@ -1,8 +1,15 @@
+# Python
 __pycache__/
+
+# Translation
+*.mo
+*.pot
+
+# App specific
+app.db
 venv/
 logs/
 
-*.db
-
+# Sublime configurations
 *.sublime-project
 *.sublime-workspace
