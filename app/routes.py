@@ -22,6 +22,7 @@ from flask_login import current_user
 from flask_login import login_user
 from flask_login import login_required
 from flask_login import logout_user
+from guess_language import guess_language
 from werkzeug.urls import url_parse
 
 
@@ -41,7 +42,15 @@ def index():
     form = PostForm()
 
     if form.validate_on_submit():
-        post = Post(body=form.post.data, author=current_user)
+        lang = guess_language(form.post.data)
+        if lang == 'UNKNOWN' or len(lang) > 5:
+            lang = ''
+
+        post = Post(
+            body=form.post.data,
+            author=current_user,
+            language=lang
+        )
         db.session.add(post)
         db.session.commit()
         flash(_('Your post is now live!'))
