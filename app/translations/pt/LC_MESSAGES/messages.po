@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-07-08 11:23-0300\n"
+"POT-Creation-Date: 2019-07-08 21:25-0300\n"
 "PO-Revision-Date: 2019-07-05 11:01-0300\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: pt\n"
@@ -51,7 +51,7 @@ msgstr ""
 msgid "Confirm Password"
 msgstr ""
 
-#: app/forms.py:32 app/routes.py:120 app/templates/register.html:7
+#: app/forms.py:32 app/routes.py:131 app/templates/register.html:7
 msgid "Register"
 msgstr ""
 
@@ -83,72 +83,80 @@ msgstr ""
 msgid "Repeat Password"
 msgstr ""
 
-#: app/forms.py:81 app/routes.py:248
+#: app/forms.py:81 app/routes.py:259
 #: app/templates/reset_password_request.html:5
 msgid "Reset Password"
 msgstr ""
 
-#: app/routes.py:40
+#: app/routes.py:43
 msgid "Home Page"
 msgstr ""
 
-#: app/routes.py:47
+#: app/routes.py:58
 msgid "Your post is now live!"
 msgstr ""
 
-#: app/routes.py:83
+#: app/routes.py:94
 msgid "Invalid Username or Password."
 msgstr ""
 
-#: app/routes.py:92 app/templates/login.html:6
+#: app/routes.py:103 app/templates/login.html:6
 msgid "Sign In"
 msgstr ""
 
-#: app/routes.py:116
+#: app/routes.py:127
 msgid "Congratulation. You are now a registered user!"
 msgstr ""
 
-#: app/routes.py:157
+#: app/routes.py:168
 msgid "Your changes have been saved."
 msgstr ""
 
-#: app/routes.py:164 app/templates/edit_profile.html:7
+#: app/routes.py:175 app/templates/edit_profile.html:7
 msgid "Edit Profile"
 msgstr ""
 
-#: app/routes.py:176 app/routes.py:195
+#: app/routes.py:187 app/routes.py:206
 #, python-format
 msgid "User %(username)s not found."
 msgstr ""
 
-#: app/routes.py:180
+#: app/routes.py:191
 msgid "You cannot follow yourself."
 msgstr ""
 
-#: app/routes.py:185
+#: app/routes.py:196
 #, python-format
 msgid "You are following %(username)s!"
 msgstr ""
 
-#: app/routes.py:199
+#: app/routes.py:210
 msgid "You cannot unfollow yourself."
 msgstr ""
 
-#: app/routes.py:204
+#: app/routes.py:215
 #, python-format
 msgid "You are not following %(username)s!"
 msgstr ""
 
-#: app/routes.py:221 app/templates/default.html:44
+#: app/routes.py:232 app/templates/default.html:59
 msgid "Explore"
 msgstr ""
 
-#: app/routes.py:243
+#: app/routes.py:254
 msgid "Email not registered."
 msgstr ""
 
-#: app/routes.py:268
+#: app/routes.py:279
 msgid "Your password has been reset."
+msgstr ""
+
+#: app/translate.py:10
+msgid "Error: the translation service is not configured."
+msgstr ""
+
+#: app/translate.py:21
+msgid "Error: the translation service failed."
 msgstr ""
 
 #: app/templates/404.html:5
@@ -156,7 +164,7 @@ msgid "Page not Found."
 msgstr ""
 
 #: app/templates/404.html:7 app/templates/500.html:6
-#: app/templates/default.html:43
+#: app/templates/default.html:58
 msgid "Home"
 msgstr ""
 
@@ -173,15 +181,23 @@ msgstr ""
 msgid "%(username)s said %(when)s"
 msgstr ""
 
-#: app/templates/default.html:49
+#: app/templates/_post.html:31
+msgid "Translate"
+msgstr ""
+
+#: app/templates/default.html:19
+msgid "Error: Could not contact the server."
+msgstr ""
+
+#: app/templates/default.html:64
 msgid "Login"
 msgstr ""
 
-#: app/templates/default.html:51
+#: app/templates/default.html:66
 msgid "Profile"
 msgstr ""
 
-#: app/templates/default.html:52
+#: app/templates/default.html:67
 msgid "Logout"
 msgstr ""
 
