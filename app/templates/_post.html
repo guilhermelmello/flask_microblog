@@ -20,7 +20,7 @@
                 {{ post.body }}
             </span>
 
-            {% if post.language and post.language != g.locale() %}
+            {% if post.language and post.language != g.locale %}
                 <br><br>
                 <span id="translation{{ post.id }}">
                     <a href="javascript:translate(
