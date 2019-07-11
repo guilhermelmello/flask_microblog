@@ -73,6 +73,10 @@ if not app.debug:
     app.logger.info(f"{app.config['NAME']} startup")
 
 
+from app.errors import bp as errors_bp
+app.register_blueprint(errors_bp)
+
+
 @babel.localeselector
 def get_locale():
     r = request.accept_languages.best_match(app.config['LANGUAGES'])
@@ -81,4 +85,3 @@ def get_locale():
 
 from app import routes
 from app import models
-from app import errors
