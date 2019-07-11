@@ -1,8 +1,12 @@
-from app import app
 from app import cli
+from app import create_app
 from app import db
 from app.models import User
 from app.models import Post
+
+
+app = create_app()
+cli.register(app)
 
 
 @app.shell_context_processor
