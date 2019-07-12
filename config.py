@@ -1,6 +1,8 @@
+from dotenv import load_dotenv
 import os
 
 basedir = os.path.abspath(os.path.dirname(__file__))
+load_dotenv(os.path.join(basedir, '.env'))
 
 
 class Config(object):
@@ -22,3 +24,8 @@ class Config(object):
     LANGUAGES = ['pt', 'es', 'en']
 
     MS_TRANSLATOR_KEY = os.environ.get('MS_TRANSLATOR_KEY')
+
+
+class TestConfig(Config):
+    TESTING = True
+    SQLALCHEMY_DATABASE_URI = 'sqlite://'
