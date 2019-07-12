@@ -85,7 +85,7 @@ def reset_password_request():
             flash(_(m))
         else:
             flash(_('Email not registered.'))
-        return redirect(url_for('main.login'))
+        return redirect(url_for('auth.login'))
 
     render = render_template(
         'auth/reset_password_request.html',
